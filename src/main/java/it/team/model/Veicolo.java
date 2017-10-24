@@ -1,10 +1,13 @@
 package it.team.model;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Veicolo {
@@ -15,6 +18,8 @@ public class Veicolo {
 	
 	private String marca;
 	
+	private String modello;
+	
 	private String targa;
 	
 	private Alimentazione alimentazione;
@@ -23,16 +28,9 @@ public class Veicolo {
 	
 	private Colore colore;
 	
-	private boolean disponibile;
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="cliente")
+	private List<Noleggio> listNoleggi;
 	
-	private LocalDate inizioNoleggio;
-	
-	private LocalDate fineNoleggio;
-	
-	private Cliente cliente;
-	
-	private double costoNoleggio;
-
 	public int getId() {
 		return id;
 	}
@@ -81,51 +79,10 @@ public class Veicolo {
 		this.colore = colore;
 	}
 
-	public boolean isDisponibile() {
-		return disponibile;
-	}
-
-	public void setDisponibile(boolean disponibile) {
-		this.disponibile = disponibile;
-	}
-
-	public LocalDate getInizioNoleggio() {
-		return inizioNoleggio;
-	}
-
-	public void setInizioNoleggio(LocalDate inizioNoleggio) {
-		this.inizioNoleggio = inizioNoleggio;
-	}
-
-	public LocalDate getFineNoleggio() {
-		return fineNoleggio;
-	}
-
-	public void setFineNoleggio(LocalDate fineNoleggio) {
-		this.fineNoleggio = fineNoleggio;
-	}
-
-	public Cliente getCliente() {
-		return cliente;
-	}
-
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
-
-	public double getCostoNoleggio() {
-		return costoNoleggio;
-	}
-
-	public void setCostoNoleggio(double costoNoleggio) {
-		this.costoNoleggio = costoNoleggio;
-	}
-
 	@Override
 	public String toString() {
-		return "Veicolo [id=" + id + ", marca=" + marca + ", targa=" + targa + ", disponibile=" + disponibile
-				+ ", inizioNoleggio=" + inizioNoleggio + ", fineNoleggio=" + fineNoleggio + ", costoNoleggio="
-				+ costoNoleggio + "]";
+		return "Veicolo [id=" + id + ", marca=" + marca + ", targa=" + targa + ", alimentazione=" + alimentazione
+				+ ", categoria=" + categoria + ", colore=" + colore + "]";
 	}
 
 }

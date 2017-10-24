@@ -1,8 +1,12 @@
 package it.team.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Cliente {
@@ -15,7 +19,8 @@ public class Cliente {
 	
 	private String cognome;
 	
-	private Veicolo veicolo;
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="veicolo")
+	private List<Noleggio> listNoleggi;
 
 	public int getId() {
 		return id;
@@ -41,17 +46,9 @@ public class Cliente {
 		this.cognome = cognome;
 	}
 
-	public Veicolo getVeicolo() {
-		return veicolo;
-	}
-
-	public void setVeicolo(Veicolo veicolo) {
-		this.veicolo = veicolo;
-	}
-
 	@Override
 	public String toString() {
-		return "Cliente [id=" + id + ", nome=" + nome + ", cognome=" + cognome + ", veicolo=" + veicolo + "]";
+		return "Cliente [id=" + id + ", nome=" + nome + ", cognome=" + cognome + ", listNoleggi=" + listNoleggi + "]";
 	}
 
 }
