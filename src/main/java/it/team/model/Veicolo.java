@@ -26,6 +26,22 @@ public class Veicolo {
 	
 	private Categoria categoria;
 	
+	public String getModello() {
+		return modello;
+	}
+
+	public void setModello(String modello) {
+		this.modello = modello;
+	}
+
+	public List<Noleggio> getListNoleggi() {
+		return listNoleggi;
+	}
+
+	public void setListNoleggi(List<Noleggio> listNoleggi) {
+		this.listNoleggi = listNoleggi;
+	}
+
 	private Colore colore;
 	
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="cliente")
@@ -81,8 +97,9 @@ public class Veicolo {
 
 	@Override
 	public String toString() {
-		return "Veicolo [id=" + id + ", marca=" + marca + ", targa=" + targa + ", alimentazione=" + alimentazione
-				+ ", categoria=" + categoria + ", colore=" + colore + "]";
+		return "Veicolo [id=" + id + ", marca=" + marca + ", modello=" + modello + ", targa=" + targa
+				+ ", alimentazione=" + alimentazione + ", categoria=" + categoria + ", colore=" + colore
+				+ ", listNoleggi=" + listNoleggi + "]";
 	}
 
 }
