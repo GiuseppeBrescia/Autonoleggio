@@ -1,6 +1,5 @@
 package it.team.model;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -26,6 +25,11 @@ public class Veicolo {
 	
 	private Categoria categoria;
 	
+	private Colore colore;
+	
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="cliente")
+	private List<Noleggio> listNoleggi;
+	
 	public String getModello() {
 		return modello;
 	}
@@ -41,11 +45,6 @@ public class Veicolo {
 	public void setListNoleggi(List<Noleggio> listNoleggi) {
 		this.listNoleggi = listNoleggi;
 	}
-
-	private Colore colore;
-	
-	@OneToMany(fetch=FetchType.LAZY, mappedBy="cliente")
-	private List<Noleggio> listNoleggi;
 	
 	public int getId() {
 		return id;
