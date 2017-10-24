@@ -2,7 +2,8 @@ package it.team.services;
 
 import java.util.List;
 
-import it.relatech.model.User;
+import it.team.model.Categoria;
+import it.team.model.Veicolo;
 
 public interface VeicoloService {
 
