@@ -15,42 +15,42 @@ import it.team.model.Veicolo;
 @Transactional
 public class VeicoloDaoImpl extends AbstractDao implements VeicoloDao {
 
-	public Veicolo getById(int id) {
+	public Veicolo getVeicoloById(int id) {
 		Criteria criteria = getSession().createCriteria(Veicolo.class);
 		criteria.add(Restrictions.eq("id", id));
 		return (Veicolo) criteria.uniqueResult();
 	}
 
-	public Veicolo add(Veicolo veicolo) {
+	public Veicolo addVeicolo(Veicolo veicolo) {
 		persist(veicolo);
 		return veicolo;
 	}
 
-	public Veicolo getModel(String modello) {
+	public Veicolo getModelloVeicolo(String modello) {
 		Criteria criteria = getSession().createCriteria(Veicolo.class);
 		criteria.add(Restrictions.eq("marca", modello));
 		return (Veicolo) criteria.uniqueResult();
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Veicolo> getList() {
+	public List<Veicolo> getListVeicoli() {
 		return getSession().createCriteria(Veicolo.class).list();
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Veicolo> getListByCategoria(Categoria categoria) {
+	public List<Veicolo> getListVeicoliByCategoria(Categoria categoria) {
 		Criteria criteria = getSession().createCriteria(Veicolo.class);
 		criteria.add(Restrictions.eq("categoria", categoria));
 		return criteria.list();
 	}
 
-	public Veicolo update(Veicolo veicolo) {
+	public Veicolo updateVeicolo(Veicolo veicolo) {
 		update(veicolo);
 		return veicolo;
 	}
 
-	public void delete(Veicolo veicolo) {
-		delete(getModel(veicolo.getModello()));
+	public void deleteVeicolo(Veicolo veicolo) {
+		delete(getModelloVeicolo(veicolo.getModello()));
 	}
 
 }

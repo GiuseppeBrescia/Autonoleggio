@@ -14,7 +14,7 @@ import it.team.model.Cliente;
 @Transactional
 public class ClienteDaoImpl extends AbstractDao implements ClienteDao {
 
-	public Cliente add(Cliente cliente) {
+	public Cliente addCliente(Cliente cliente) {
 		persist(cliente);
 		return cliente;
 	}
@@ -26,16 +26,16 @@ public class ClienteDaoImpl extends AbstractDao implements ClienteDao {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Cliente> getList() {
+	public List<Cliente> getListClienti() {
 		return getSession().createCriteria(Cliente.class).list();
 	}
 
-	public Cliente update(Cliente cliente) {
+	public Cliente updateCliente(Cliente cliente) {
 		update(cliente);
 		return null;
 	}
 
-	public void delete(Cliente cliente) {
+	public void deleteCliente(Cliente cliente) {
 		delete(getClienteById(cliente.getId()));
 	}
 

@@ -7,18 +7,18 @@ import it.team.model.Veicolo;
 
 public interface VeicoloDao {
 
-	Veicolo getById(int id);
+	Veicolo getVeicoloById(int id);
 
-	Veicolo add(Veicolo veicolo);
+	Veicolo addVeicolo(Veicolo veicolo);
 
-	Veicolo getModel(String modello);
+	Veicolo getModelloVeicolo(String modello);
 
-	List<Veicolo> getList();
+	List<Veicolo> getListVeicoli();
 
-	List<Veicolo> getListByCategoria(Categoria categoria);
+	List<Veicolo> getListVeicoliByCategoria(Categoria categoria);
 
-	Veicolo update(Veicolo veicolo);
+	Veicolo updateVeicolo(Veicolo veicolo);
 
-	void delete(Veicolo veicolo);
+	void deleteVeicolo(Veicolo veicolo);
 
 }

@@ -6,20 +6,14 @@ import it.team.model.Noleggio;
 
 public interface NoleggioDao {
 
-	Noleggio add(Noleggio noleggio);
+	Noleggio addNoleggio(Noleggio noleggio);
 
 	Noleggio getNoleggioById(int id);
 
-	List<Noleggio> getListDisp();
+	List<Noleggio> getListNoleggiDisp();
 
-	List<Noleggio> getListById(int id);
+	Noleggio updateNoleggio(Noleggio noleggio);
 
-	Noleggio update(Noleggio noleggio);
-
-	void delete(Noleggio noleggio);
-
-	void noleggia(Noleggio noleggio);
-
-	void restituisci();
+	void deleteNoleggio(Noleggio noleggio);
 
 }

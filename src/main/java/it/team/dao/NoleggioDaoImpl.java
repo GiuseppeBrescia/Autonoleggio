@@ -14,7 +14,7 @@ import it.team.model.Noleggio;
 @Transactional
 public class NoleggioDaoImpl extends AbstractDao implements NoleggioDao {
 
-	public Noleggio add(Noleggio noleggio) {
+	public Noleggio addNoleggio(Noleggio noleggio) {
 		persist(noleggio);
 		return noleggio;
 	}
@@ -26,33 +26,18 @@ public class NoleggioDaoImpl extends AbstractDao implements NoleggioDao {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Noleggio> getListDisp() {
+	public List<Noleggio> getListNoleggiDisp() {
 		return getSession().createCriteria(Noleggio.class).list();
 
 	}
 
-	public List<Noleggio> getListById(int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public Noleggio update(Noleggio noleggio) {
+	public Noleggio updateNoleggio(Noleggio noleggio) {
 		update(noleggio);
 		return noleggio;
 	}
 
-	public void delete(Noleggio noleggio) {
+	public void deleteNoleggio(Noleggio noleggio) {
 		delete(getNoleggioById(noleggio.getId()));
-	}
-
-	public void noleggia(Noleggio noleggio) {
-		System.out.println("Dammi la lista dei veicoli");
-
-	}
-
-	public void restituisci() {
-		// TODO Auto-generated method stub
-
 	}
 
 }
