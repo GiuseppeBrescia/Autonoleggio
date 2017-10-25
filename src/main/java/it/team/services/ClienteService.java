@@ -6,8 +6,6 @@ import it.team.model.Cliente;
 
 public interface ClienteService {
 
-	Cliente getModel(int id);
-
 	Cliente add(Cliente cliente);
 
 	Cliente update(Cliente cliente);

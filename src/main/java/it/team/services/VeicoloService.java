@@ -7,24 +7,18 @@ import it.team.model.Veicolo;
 
 public interface VeicoloService {
 
-	Veicolo getModel(String modello);
+	Veicolo getVeicoloById(int id);
 
-	Veicolo add(Veicolo veicolo);
+	Veicolo addVeicolo(Veicolo veicolo);
 
-	Veicolo update(Veicolo veicolo);
+	Veicolo getModelloVeicolo(String modello);
 
-	void delete(Veicolo veicolo);
+	List<Veicolo> getListVeicoli();
 
-	List<Veicolo> getList();
+	List<Veicolo> getListVeicoliByCategoria(Categoria categoria);
 
-	Veicolo getById(int id);
+	Veicolo updateVeicolo(Veicolo veicolo);
 
-	List<Veicolo> getListDisp();
-
-	void noleggia(int id);
-
-	void restituisci(int id);
-
-	List<Veicolo> getListByCategoria(Categoria categoria);
+	void deleteVeicolo(Veicolo veicolo);
 
 }

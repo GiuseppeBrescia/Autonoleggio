@@ -7,54 +7,48 @@ import it.team.model.Veicolo;
 
 public class VeicoloServiceImpl implements VeicoloService {
 
-	public Veicolo getModel(String modello) {
+	@Override
+	public Veicolo getVeicoloById(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public Veicolo add(Veicolo veicolo) {
+	@Override
+	public Veicolo addVeicolo(Veicolo veicolo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public Veicolo update(Veicolo veicolo) {
+	@Override
+	public Veicolo getModelloVeicolo(String modello) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public void delete(Veicolo veicolo) {
-		// TODO Auto-generated method stub
-
-	}
-
-	public List<Veicolo> getList() {
+	@Override
+	public List<Veicolo> getListVeicoli() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public Veicolo getById(int id) {
+	@Override
+	public List<Veicolo> getListVeicoliByCategoria(Categoria categoria) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public List<Veicolo> getListDisp() {
+	@Override
+	public Veicolo updateVeicolo(Veicolo veicolo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public void noleggia(int id) {
+	@Override
+	public void deleteVeicolo(Veicolo veicolo) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
-	public void restituisci(int id) {
-		// TODO Auto-generated method stub
 
-	}
-
-	public List<Veicolo> getListByCategoria(Categoria categoria) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }
