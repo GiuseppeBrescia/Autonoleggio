@@ -48,7 +48,7 @@ public class ClienteController {
 		try {
 			Cliente updatedCliente = clienteService.update(cliente);
 			logger.info("Cliente updated: " + updatedCliente);
-			if (updatedCliente == null)
+			if (updatedCliente != null)
 				return new ResponseEntity<Cliente>(updatedCliente, HttpStatus.OK);
 			else
 				return new ResponseEntity<Cliente>(HttpStatus.NO_CONTENT);
@@ -63,7 +63,7 @@ public class ClienteController {
 		try {
 			clienteService.delete(cliente);
 			logger.info("Cliente deleted: " + cliente);
-			if (cliente == null)
+			if (cliente != null)
 				return new ResponseEntity<Cliente>(cliente, HttpStatus.OK);
 			else
 				return new ResponseEntity<Cliente>(HttpStatus.NO_CONTENT);
@@ -78,7 +78,7 @@ public class ClienteController {
 		try {
 			List<Cliente> listClienti = clienteService.getList();
 			logger.info("Lista clienti: " + listClienti);
-			if (listClienti == null)
+			if (listClienti != null)
 				return new ResponseEntity<List<Cliente>>(listClienti, HttpStatus.OK);
 			else
 				return new ResponseEntity<List<Cliente>>(HttpStatus.NO_CONTENT);
@@ -93,7 +93,7 @@ public class ClienteController {
 		try {
 			Cliente cliente = clienteService.getClienteById(id);
 			logger.info("Cliente get by id=" + id + ": " + cliente);
-			if (cliente == null)
+			if (cliente != null)
 				return new ResponseEntity<Cliente>(cliente, HttpStatus.OK);
 			else
 				return new ResponseEntity<Cliente>(HttpStatus.NO_CONTENT);

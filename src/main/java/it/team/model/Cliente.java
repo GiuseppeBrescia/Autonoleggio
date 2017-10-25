@@ -19,7 +19,7 @@ public class Cliente {
 	
 	private String cognome;
 	
-	@OneToMany(fetch=FetchType.LAZY, mappedBy="cliente")
+	@OneToMany(mappedBy="cliente")
 	private List<Noleggio> listNoleggi;
 
 	public int getId() {
