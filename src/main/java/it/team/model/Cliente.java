@@ -19,7 +19,7 @@ public class Cliente {
 	
 	private String cognome;
 	
-	@OneToMany(mappedBy="cliente")
+	@OneToMany(fetch=FetchType.EAGER,mappedBy="cliente")
 	private List<Noleggio> listNoleggi;
 
 	public int getId() {
