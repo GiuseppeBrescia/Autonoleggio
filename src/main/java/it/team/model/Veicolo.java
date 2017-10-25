@@ -27,7 +27,7 @@ public class Veicolo {
 	
 	private Colore colore;
 	
-	@OneToMany(fetch=FetchType.LAZY, mappedBy="cliente")
+	@OneToMany(fetch=FetchType.EAGER, mappedBy="cliente")
 	private List<Noleggio> listNoleggi;
 	
 	public String getModello() {

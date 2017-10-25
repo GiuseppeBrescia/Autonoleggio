@@ -20,10 +20,10 @@ public class Noleggio {
 	
 	private LocalDate finePrenotazione;
 	
-	@ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	private Cliente cliente;
 	
-	@ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	private Veicolo veicolo;
 	
 	private double costoNoleggio;
