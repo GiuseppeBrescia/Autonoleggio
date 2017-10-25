@@ -2,6 +2,10 @@ package it.team.model;
 
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
+
 public class Noleggio {
 	
 	private int id;
@@ -10,8 +14,10 @@ public class Noleggio {
 	
 	private LocalDate finePrenotazione;
 	
+	@ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	private Cliente cliente;
 	
+	@ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	private Veicolo veicolo;
 	
 	private double costoNoleggio;
