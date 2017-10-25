@@ -2,53 +2,52 @@ package it.team.services;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import it.team.dao.VeicoloDao;
 import it.team.model.Categoria;
 import it.team.model.Veicolo;
 
+@Service
 public class VeicoloServiceImpl implements VeicoloService {
+
+	@Autowired
+	private VeicoloDao veicoloDao;
 
 	@Override
 	public Veicolo getVeicoloById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return veicoloDao.getVeicoloById(id);
 	}
 
 	@Override
 	public Veicolo addVeicolo(Veicolo veicolo) {
-		// TODO Auto-generated method stub
-		return null;
+		return veicoloDao.addVeicolo(veicolo);
 	}
 
 	@Override
 	public Veicolo getModelloVeicolo(String modello) {
-		// TODO Auto-generated method stub
-		return null;
+		return veicoloDao.getModelloVeicolo(modello);
 	}
 
 	@Override
 	public List<Veicolo> getListVeicoli() {
-		// TODO Auto-generated method stub
-		return null;
+		return veicoloDao.getListVeicoli();
 	}
 
 	@Override
 	public List<Veicolo> getListVeicoliByCategoria(Categoria categoria) {
-		// TODO Auto-generated method stub
-		return null;
+		return veicoloDao.getListVeicoliByCategoria(categoria);
 	}
 
 	@Override
 	public Veicolo updateVeicolo(Veicolo veicolo) {
-		// TODO Auto-generated method stub
-		return null;
+		return veicoloDao.updateVeicolo(veicolo);
 	}
 
 	@Override
 	public void deleteVeicolo(Veicolo veicolo) {
-		// TODO Auto-generated method stub
-		
+		veicoloDao.deleteVeicolo(veicolo);
 	}
-
-
 
 }

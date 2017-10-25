@@ -2,36 +2,36 @@ package it.team.services;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import it.team.dao.ClienteDao;
 import it.team.model.Cliente;
 
+@Service
 public class ClienteServiceImpl implements ClienteService {
+
+	@Autowired
+	private ClienteDao clienteDao;
 
 	@Override
 	public Cliente add(Cliente cliente) {
-		// TODO Auto-generated method stub
-		return null;
+		return clienteDao.addCliente(cliente);
 	}
 
 	@Override
 	public Cliente update(Cliente cliente) {
-		// TODO Auto-generated method stub
-		return null;
+		return clienteDao.updateCliente(cliente);
 	}
 
 	@Override
 	public void delete(Cliente cliente) {
-		// TODO Auto-generated method stub
-		
+		clienteDao.deleteCliente(cliente);
 	}
 
 	@Override
 	public List<Cliente> getList() {
-		// TODO Auto-generated method stub
-		return null;
+		return clienteDao.getListClienti();
 	}
-
-
-
-
 
 }

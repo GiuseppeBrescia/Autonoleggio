@@ -3,6 +3,8 @@ package it.team.services;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import it.team.dao.NoleggioDao;
 import it.team.dao.NoleggioDaoImpl;
 import it.team.dao.VeicoloDao;
@@ -10,6 +12,7 @@ import it.team.dao.VeicoloDaoImpl;
 import it.team.model.Noleggio;
 import it.team.model.Veicolo;
 
+@Service
 public class NoleggioServiceImpl implements NoleggioService {
 
 	NoleggioDao noleggioDao = new NoleggioDaoImpl();
@@ -17,12 +20,12 @@ public class NoleggioServiceImpl implements NoleggioService {
 
 	@Override
 	public Noleggio addNoleggio(Noleggio noleggio) {
-		return null;
+		return noleggioDao.addNoleggio(noleggio);
 	}
 
 	@Override
 	public Noleggio getNoleggioById(int id) {
-		return null;
+		return noleggioDao.getNoleggioById(id);
 	}
 
 	@Override
@@ -37,11 +40,12 @@ public class NoleggioServiceImpl implements NoleggioService {
 
 	@Override
 	public Noleggio updateNoleggio(Noleggio noleggio) {
-		return null;
+		return noleggioDao.updateNoleggio(noleggio);
 	}
 
 	@Override
 	public void deleteNoleggio(Noleggio noleggio) {
+		noleggioDao.deleteNoleggio(noleggio);
 
 	}
 }
