@@ -13,5 +13,7 @@ public interface ClienteService {
 	void delete(Cliente cliente);
 
 	List<Cliente> getList();
+	
+	Cliente getClienteById(int id);
 
 }

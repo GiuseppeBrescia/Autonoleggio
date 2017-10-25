@@ -34,4 +34,9 @@ public class ClienteServiceImpl implements ClienteService {
 		return clienteDao.getListClienti();
 	}
 
+	@Override
+	public Cliente getClienteById(int id) {
+		return clienteDao.getClienteById(id);
+	}
+
 }
