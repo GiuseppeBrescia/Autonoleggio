@@ -22,6 +22,14 @@ public class Cliente {
 	@OneToMany(fetch=FetchType.EAGER,mappedBy="cliente")
 	private List<Noleggio> listNoleggi;
 
+	public List<Noleggio> getListNoleggi() {
+		return listNoleggi;
+	}
+
+	public void setListNoleggi(List<Noleggio> listNoleggi) {
+		this.listNoleggi = listNoleggi;
+	}
+
 	public int getId() {
 		return id;
 	}
