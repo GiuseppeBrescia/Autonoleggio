@@ -31,6 +31,11 @@ public class NoleggioController {
 	
 	private final Logger logger = Logger.getLogger(NoleggioController.class.getName());
 	
+	@GetMapping("/getModel")
+	public Noleggio getNoleggio() {
+		return new Noleggio();
+	}
+	
 	@GetMapping("/getListDisp/{dataInizio}/{dataFine}")
 	public ResponseEntity<List<Veicolo>> getListDisp (@PathVariable("dataInizio") LocalDate dataInizio, @PathVariable("dataFine") LocalDate dataFine) {
 		try {
