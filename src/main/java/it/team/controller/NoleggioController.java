@@ -49,7 +49,8 @@ public class NoleggioController {
 	@PutMapping("/noleggio")
 	public ResponseEntity<Noleggio> noleggia(@RequestBody Noleggio noleggio) {
 		try {
-			if (noleggioService.isNoleggiata(noleggio.getVeicolo(), noleggio.getInizioPrenotazione(), noleggio.getFinePrenotazione())) {
+			if (!noleggioService.isNoleggiata(noleggio.getVeicolo(), noleggio.getInizioPrenotazione(), noleggio.getFinePrenotazione())) {
+				noleggioService.addNoleggio(noleggio);
 				logger.info("Noleggio added: " + noleggio);
 				return new ResponseEntity<Noleggio>(noleggio, HttpStatus.CREATED);
 			} else 
