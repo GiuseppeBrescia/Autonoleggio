@@ -1,8 +1,6 @@
 package it.team.dao;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -39,11 +37,6 @@ public class NoleggioDaoImpl extends AbstractDao implements NoleggioDao {
 	@Override
 	public void deleteNoleggio(Noleggio noleggio) {
 		delete(getNoleggioById(noleggio.getId()));
-	}
-
-	@Override
-	public List<Veicolo> getListDisp(LocalDate inizioPrenotazione, LocalDate finePrenotazione) {
-		return null;
 	}
 
 	@Override

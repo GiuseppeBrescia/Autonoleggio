@@ -2,9 +2,11 @@ package it.team.services;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.springframework.stereotype.Service;
 
+import it.team.controller.NoleggioController;
 import it.team.dao.NoleggioDao;
 import it.team.dao.NoleggioDaoImpl;
 import it.team.dao.VeicoloDao;
@@ -14,7 +16,7 @@ import it.team.model.Veicolo;
 
 @Service
 public class NoleggioServiceImpl implements NoleggioService {
-
+	private final Logger logger = Logger.getLogger(NoleggioController.class.getName());
 	NoleggioDao noleggioDao = new NoleggioDaoImpl();
 	VeicoloDao veicoloDao = new VeicoloDaoImpl();
 
@@ -32,8 +34,11 @@ public class NoleggioServiceImpl implements NoleggioService {
 	public List<Veicolo> getListDisp(LocalDate inizioPrenotazione, LocalDate finePrenotazione) {
 		List<Veicolo> veicoliDisponibili = veicoloDao.getListVeicoli();
 		for (Veicolo veicolo : veicoliDisponibili) {
-			if (noleggioDao.isNoleggiata(veicolo, inizioPrenotazione, finePrenotazione))
+			logger.info(veicolo + " Data Inizio: " + inizioPrenotazione + " Data fine: " + finePrenotazione);
+			if (noleggioDao.isNoleggiata(veicolo, inizioPrenotazione, finePrenotazione)) {
+				logger.info("Risulta noleggiata");
 				veicoliDisponibili.remove(veicolo);
+			}
 		}
 		
 		return veicoliDisponibili;

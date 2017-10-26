@@ -32,9 +32,11 @@ public class NoleggioController {
 	}
 	
 	@GetMapping("/getListDisp/{dataInizio}/{dataFine}")
-	public ResponseEntity<List<Veicolo>> getListDisp (@PathVariable("dataInizio") LocalDate dataInizio, @PathVariable("dataFine") LocalDate dataFine) {
+	public ResponseEntity<List<Veicolo>> getListDisp (@PathVariable("dataInizio") String dataInizio, @PathVariable("dataFine") String dataFine) {
 		try {
-			List<Veicolo> listVeicoli = noleggioService.getListDisp(dataInizio, dataFine);
+			LocalDate prenotazioneInizio = LocalDate.parse(dataInizio);
+			LocalDate prenotazioneFine = LocalDate.parse(dataFine);
+			List<Veicolo> listVeicoli = noleggioService.getListDisp(prenotazioneInizio, prenotazioneFine);
 			logger.info("Lista veicoli disponibili: " + listVeicoli);
 			if (listVeicoli != null)
 				return new ResponseEntity<List<Veicolo>>(listVeicoli, HttpStatus.OK);
