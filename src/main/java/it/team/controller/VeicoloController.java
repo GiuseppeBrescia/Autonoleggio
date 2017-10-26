@@ -104,10 +104,11 @@ public class VeicoloController {
 		}		
 	}
 	
-	@GetMapping("/getListByCategoria")
-	public ResponseEntity<List<Veicolo>> getListVeicoliByCategoria (@PathVariable("categoria") Categoria categoria) {
+	@GetMapping("/getListByCategoria/{categoria}")
+	public ResponseEntity<List<Veicolo>> getListVeicoliByCategoria (@PathVariable("categoria") String categoria) {
 		try {
-			List<Veicolo> listVeicoli = veicoloService.getListVeicoliByCategoria(categoria);
+			Categoria c = Categoria.valueOf(categoria);
+			List<Veicolo> listVeicoli = veicoloService.getListVeicoliByCategoria(c);
 			logger.info("Lista veicoli by categori=" + categoria + ": " + listVeicoli);
 			if (listVeicoli != null)
 				return new ResponseEntity<List<Veicolo>>(listVeicoli, HttpStatus.OK);

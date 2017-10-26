@@ -3,6 +3,8 @@ package it.team.model;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -21,10 +23,13 @@ public class Veicolo {
 	
 	private String targa;
 	
+	@Enumerated(EnumType.STRING)
 	private Alimentazione alimentazione;
 	
+	@Enumerated(EnumType.STRING)
 	private Categoria categoria;
 	
+	@Enumerated(EnumType.STRING)
 	private Colore colore;
 	
 	@OneToMany(fetch=FetchType.EAGER, mappedBy="cliente")
