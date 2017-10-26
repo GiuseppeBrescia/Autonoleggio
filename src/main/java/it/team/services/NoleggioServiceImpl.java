@@ -29,13 +29,14 @@ public class NoleggioServiceImpl implements NoleggioService {
 	}
 
 	@Override
-	public List<Noleggio> getListNoleggi(LocalDate inizioPrenotazione, LocalDate finePrenotazione) {
-		return noleggioDao.getListNoleggi(inizioPrenotazione, finePrenotazione);
-	}
-
-	@Override
 	public List<Veicolo> getListDisp(LocalDate inizioPrenotazione, LocalDate finePrenotazione) {
-		return noleggioDao.getListDisp(inizioPrenotazione, finePrenotazione);
+		List<Veicolo> veicoliDisponibili = veicoloDao.getListVeicoli();
+		for (Veicolo veicolo : veicoliDisponibili) {
+			if (noleggioDao.isNoleggiata(veicolo, inizioPrenotazione, finePrenotazione))
+				veicoliDisponibili.remove(veicolo);
+		}
+		
+		return veicoliDisponibili;
 	}
 
 	@Override
@@ -47,5 +48,10 @@ public class NoleggioServiceImpl implements NoleggioService {
 	public void deleteNoleggio(Noleggio noleggio) {
 		noleggioDao.deleteNoleggio(noleggio);
 
+	}
+
+	@Override
+	public boolean isNoleggiata(Veicolo veicolo, LocalDate inizioPrenotazione, LocalDate finePrenotazione) {
+		return (noleggioDao.isNoleggiata(veicolo, inizioPrenotazione, finePrenotazione));
 	}
 }

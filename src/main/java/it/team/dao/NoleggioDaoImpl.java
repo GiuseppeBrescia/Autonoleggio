@@ -31,11 +31,6 @@ public class NoleggioDaoImpl extends AbstractDao implements NoleggioDao {
 	}
 
 	@Override
-	public List<Noleggio> getListNoleggi(LocalDate inizioPrenotazione, LocalDate finePrenotazione) {
-		return new ArrayList<Noleggio>();
-	}
-
-	@Override
 	public Noleggio updateNoleggio(Noleggio noleggio) {
 		update(noleggio);
 		return noleggio;
@@ -50,5 +45,16 @@ public class NoleggioDaoImpl extends AbstractDao implements NoleggioDao {
 	public List<Veicolo> getListDisp(LocalDate inizioPrenotazione, LocalDate finePrenotazione) {
 		return null;
 	}
+
+	@Override
+	public boolean isNoleggiata(Veicolo veicolo, LocalDate inizioPrenotazione, LocalDate finePrenotazione) {
+		Noleggio noleggio = (Noleggio) getSession().createCriteria(Noleggio.class)
+									 .add(Restrictions.eq("veicolo", veicolo))
+									 .add(Restrictions.ge("inizioPrenotazione", inizioPrenotazione))
+									 .add(Restrictions.le("finePrenotazione", finePrenotazione))
+									 .uniqueResult();
+		return (noleggio != null);
+	}
+
 
 }
