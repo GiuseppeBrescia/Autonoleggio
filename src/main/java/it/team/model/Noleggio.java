@@ -3,11 +3,14 @@ package it.team.model;
 import java.time.LocalDate;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+
+import it.team.util.LocalDatePersistenceConverter;
 
 @Entity
 public class Noleggio {
@@ -15,9 +18,9 @@ public class Noleggio {
 	@Id
 	@GeneratedValue
 	private int id;
-	
+	@Convert(converter = LocalDatePersistenceConverter.class)
 	private LocalDate inizioPrenotazione;
-	
+	@Convert(converter = LocalDatePersistenceConverter.class)
 	private LocalDate finePrenotazione;
 	
 	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)

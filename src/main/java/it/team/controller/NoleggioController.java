@@ -14,20 +14,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import it.team.model.Cliente;
 import it.team.model.Noleggio;
 import it.team.model.Veicolo;
-import it.team.services.ClienteService;
 import it.team.services.NoleggioService;
-import it.team.services.VeicoloService;
 
 @RestController
 @RequestMapping("/noleggio")
 public class NoleggioController {
 	@Autowired
 	private NoleggioService noleggioService;
-	@Autowired
-	private VeicoloService veicoloService;
 	
 	private final Logger logger = Logger.getLogger(NoleggioController.class.getName());
 	
