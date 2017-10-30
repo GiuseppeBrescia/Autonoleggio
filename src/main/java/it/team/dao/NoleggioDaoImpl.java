@@ -41,11 +41,15 @@ public class NoleggioDaoImpl extends AbstractDao implements NoleggioDao {
 
 	@Override
 	public boolean isNoleggiata(Veicolo veicolo, LocalDate inizioPrenotazione, LocalDate finePrenotazione) {
-		Noleggio noleggio = (Noleggio) getSession().createCriteria(Noleggio.class)
-									 .add(Restrictions.eq("veicolo", veicolo))
-									 .add(Restrictions.ge("inizioPrenotazione", inizioPrenotazione))
-									 .add(Restrictions.le("finePrenotazione", finePrenotazione))
-									 .uniqueResult();
+		Noleggio noleggio = (Noleggio) getSession().createCriteria(Noleggio.class, "noleggio")
+									 .createAlias("noleggio.veicolo", "veicolo")
+									 .add(Restrictions.eq("veicolo.id", veicolo.getId()))
+									 .add ( Restrictions.or( 
+											 Restrictions.between("inizioPrenotazione", inizioPrenotazione, finePrenotazione),
+											 Restrictions.between("finePrenotazione", inizioPrenotazione, finePrenotazione)
+									      ))
+									.uniqueResult();
+		
 		return (noleggio != null);
 	}
 

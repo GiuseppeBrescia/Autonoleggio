@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
@@ -14,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Cliente {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
 	private String nome;
@@ -59,7 +60,7 @@ public class Cliente {
 
 	@Override
 	public String toString() {
-		return "Cliente [id=" + id + ", nome=" + nome + ", cognome=" + cognome + ", listNoleggi=" + listNoleggi + "]";
+		return "Cliente [id=" + id + ", nome=" + nome + ", cognome=" + cognome + "]";
 	}
 
 }

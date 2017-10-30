@@ -7,6 +7,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
@@ -16,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Veicolo {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
 	private String marca;
@@ -106,7 +107,7 @@ public class Veicolo {
 	public String toString() {
 		return "Veicolo [id=" + id + ", marca=" + marca + ", modello=" + modello + ", targa=" + targa
 				+ ", alimentazione=" + alimentazione + ", categoria=" + categoria + ", colore=" + colore
-				+ ", listNoleggi=" + listNoleggi + "]";
+				+ "]";
 	}
 
 }

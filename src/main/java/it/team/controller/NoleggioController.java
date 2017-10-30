@@ -1,6 +1,7 @@
 package it.team.controller;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -38,8 +40,8 @@ public class NoleggioController {
 		return new Noleggio();
 	}
 	
-	@GetMapping("/getListDisp/{dataInizio}/{dataFine}")
-	public ResponseEntity<List<Veicolo>> getListDisp (@PathVariable("dataInizio") String dataInizio, @PathVariable("dataFine") String dataFine) {
+	@GetMapping("/getListDisp")
+	public ResponseEntity<List<Veicolo>> getListDisp (@RequestHeader("dataInizio") String dataInizio, @RequestHeader("dataFine") String dataFine) {
 		try {
 			LocalDate prenotazioneInizio = LocalDate.parse(dataInizio);
 			LocalDate prenotazioneFine = LocalDate.parse(dataFine);
@@ -60,10 +62,15 @@ public class NoleggioController {
 		try {
 			Cliente cliente = clienteService.getClienteById(idCliente);
 			Veicolo veicolo = veicoloService.getVeicoloById(idVeicolo);
+			LocalDate inizioPrenotazione = noleggio.getInizioPrenotazione();
+			LocalDate finePrenotazione = noleggio.getFinePrenotazione();
+			
 			if ( cliente != null && veicolo != null)
-				if (!noleggioService.isNoleggiata(veicolo, noleggio.getInizioPrenotazione(), noleggio.getFinePrenotazione())) {
+				if (!noleggioService.isNoleggiata(veicolo, inizioPrenotazione, finePrenotazione)) {
 					noleggio.setCliente(cliente);
 					noleggio.setVeicolo(veicolo);
+					double costoNoleggio = ChronoUnit.DAYS.between(inizioPrenotazione, finePrenotazione) * veicolo.getCategoria().getCosto();
+					noleggio.setCostoNoleggio(costoNoleggio);
 					noleggioService.addNoleggio(noleggio);
 					logger.info("Noleggio added: " + noleggio);
 					return new ResponseEntity<Noleggio>(noleggio, HttpStatus.CREATED);
