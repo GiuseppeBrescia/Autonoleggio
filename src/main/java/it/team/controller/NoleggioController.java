@@ -55,19 +55,22 @@ public class NoleggioController {
 		}		
 	}
 	
-	@PutMapping("/noleggio/{idCliente}/{idVeicolo}")
+	@PutMapping("/noleggio/cliente={idCliente}&veicolo={idVeicolo}")
 	public ResponseEntity<Noleggio> noleggia(@RequestBody Noleggio noleggio, @PathVariable("idCliente") int idCliente, @PathVariable("idVeicolo") int idVeicolo) {
 		try {
-			if (!noleggioService.isNoleggiata(noleggio.getVeicolo(), noleggio.getInizioPrenotazione(), noleggio.getFinePrenotazione())) {
-				Cliente cliente = clienteService.getClienteById(idCliente);
-				Veicolo veicolo = veicoloService.getVeicoloById(idVeicolo);
-				noleggio.setCliente(cliente);
-				noleggio.setVeicolo(veicolo);
-				noleggioService.addNoleggio(noleggio);
-				logger.info("Noleggio added: " + noleggio);
-				return new ResponseEntity<Noleggio>(noleggio, HttpStatus.CREATED);
-			} else 
-				return new ResponseEntity<Noleggio>(HttpStatus.BAD_REQUEST);
+			Cliente cliente = clienteService.getClienteById(idCliente);
+			Veicolo veicolo = veicoloService.getVeicoloById(idVeicolo);
+			if ( cliente != null && veicolo != null)
+				if (!noleggioService.isNoleggiata(veicolo, noleggio.getInizioPrenotazione(), noleggio.getFinePrenotazione())) {
+					noleggio.setCliente(cliente);
+					noleggio.setVeicolo(veicolo);
+					noleggioService.addNoleggio(noleggio);
+					logger.info("Noleggio added: " + noleggio);
+					return new ResponseEntity<Noleggio>(noleggio, HttpStatus.CREATED);
+				} else 
+					return new ResponseEntity<Noleggio>(HttpStatus.BAD_REQUEST);
+			else
+				return new ResponseEntity<Noleggio>(HttpStatus.NO_CONTENT);
 		} catch (Exception e) {
 			logger.severe("Errore: " + e);
 			return new ResponseEntity<Noleggio>(HttpStatus.INTERNAL_SERVER_ERROR);
