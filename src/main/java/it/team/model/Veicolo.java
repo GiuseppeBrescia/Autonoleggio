@@ -10,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Veicolo {
 	
@@ -32,6 +34,7 @@ public class Veicolo {
 	@Enumerated(EnumType.STRING)
 	private Colore colore;
 	
+	@JsonIgnore
 	@OneToMany(fetch=FetchType.EAGER, mappedBy="cliente")
 	private List<Noleggio> listNoleggi;
 	

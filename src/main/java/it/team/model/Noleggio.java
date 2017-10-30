@@ -10,7 +10,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-import it.team.util.LocalDatePersistenceConverter;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import it.team.util.LocalDateConverter;
+import it.team.util.LocalDateDeserializer;
+import it.team.util.LocalDateSerializer;
 
 @Entity
 public class Noleggio {
@@ -18,9 +23,13 @@ public class Noleggio {
 	@Id
 	@GeneratedValue
 	private int id;
-	@Convert(converter = LocalDatePersistenceConverter.class)
+	@JsonSerialize(using = LocalDateSerializer.class)
+	@JsonDeserialize(using = LocalDateDeserializer.class)
+	//@Convert(converter = LocalDateConverter.class)
 	private LocalDate inizioPrenotazione;
-	@Convert(converter = LocalDatePersistenceConverter.class)
+	@JsonSerialize(using = LocalDateSerializer.class)
+	@JsonDeserialize(using = LocalDateDeserializer.class)
+	//@Convert(converter = LocalDateConverter.class)
 	private LocalDate finePrenotazione;
 	
 	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)

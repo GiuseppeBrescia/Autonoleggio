@@ -4,21 +4,23 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.logging.Logger;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import it.team.controller.NoleggioController;
 import it.team.dao.NoleggioDao;
-import it.team.dao.NoleggioDaoImpl;
 import it.team.dao.VeicoloDao;
-import it.team.dao.VeicoloDaoImpl;
 import it.team.model.Noleggio;
 import it.team.model.Veicolo;
 
 @Service
 public class NoleggioServiceImpl implements NoleggioService {
 	private final Logger logger = Logger.getLogger(NoleggioController.class.getName());
-	NoleggioDao noleggioDao = new NoleggioDaoImpl();
-	VeicoloDao veicoloDao = new VeicoloDaoImpl();
+	
+	@Autowired
+	NoleggioDao noleggioDao;
+	@Autowired
+	VeicoloDao veicoloDao;
 
 	@Override
 	public Noleggio addNoleggio(Noleggio noleggio) {
