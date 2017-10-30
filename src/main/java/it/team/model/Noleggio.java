@@ -2,8 +2,6 @@ package it.team.model;
 
 import java.time.LocalDate;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -13,7 +11,6 @@ import javax.persistence.ManyToOne;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
-import it.team.util.LocalDateConverter;
 import it.team.util.LocalDateDeserializer;
 import it.team.util.LocalDateSerializer;
 
@@ -25,17 +22,17 @@ public class Noleggio {
 	private int id;
 	@JsonSerialize(using = LocalDateSerializer.class)
 	@JsonDeserialize(using = LocalDateDeserializer.class)
-	//@Convert(converter = LocalDateConverter.class)
+//	@Convert(converter = LocalDateConverter.class)
 	private LocalDate inizioPrenotazione;
 	@JsonSerialize(using = LocalDateSerializer.class)
 	@JsonDeserialize(using = LocalDateDeserializer.class)
-	//@Convert(converter = LocalDateConverter.class)
+//	@Convert(converter = LocalDateConverter.class)
 	private LocalDate finePrenotazione;
 	
-	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@ManyToOne(fetch=FetchType.EAGER)
 	private Cliente cliente;
 	
-	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@ManyToOne(fetch=FetchType.EAGER)
 	private Veicolo veicolo;
 	
 	private double costoNoleggio;
